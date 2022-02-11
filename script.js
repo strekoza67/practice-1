@@ -1,48 +1,36 @@
-/* Задание на урок:
-
-
-
-
-
-Проверить, чтобы все работало без ошибок в консоли */
-
 'use strict';
-// 1) Создать переменную numberOfFilms и в неё поместить ответ от пользователя на вопрос:
-// 'Сколько фильмов вы уже посмотрели?'
 
 const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
-// 2) Создать объект personalMovieDB и в него поместить такие свойства:
-//- count - сюда передается ответ на первый вопрос
-//- movies - в это свойство поместить пустой объект
-//- actors - тоже поместить пустой объект
-//- genres - сюда поместить пустой массив
-//- privat - в это свойство поместить boolean(логическое) значение false
-
 const personalMoviesDB = {
-    count: numberOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false
 };
 
-// 3) Задайте пользователю по два раза вопросы:
-// - 'Один из последних просмотренных фильмов?'
-//     - 'На сколько оцените его?'
-// Ответы стоит поместить в отдельные переменные
-// Записать ответы в объект movies в формате:
-// movies: {
-//     'logan': '8.1'
-// }
+for (let i = 0; i < 2; i++) {
+  const a = prompt('Один из последних просмотренных фильмов ?'),
+    b = prompt('На сколько оцените его?');
 
-const a = prompt('Один из последних просмотренных фильмов?'),
-    b = prompt('На сколько оцените его?'),
-    c = prompt('Один из последних просмотренных фильмов?'),
-    d = prompt('На сколько оцените его?');
+  if (a != '' && b != '' && a != null && b != null && a.length < 50) {
+    personalMoviesDB.movies[a] = b;
+  } else {
+    alert('Error');
+    i--;
+  }
+}
 
-personalMoviesDB.movies[a] = b;
-personalMoviesDB.movies[c] = d;
+if (personalMoviesDB.count < 10) {
+  console.log('Мало фильмов');
+} else if (personalMoviesDB.count >= 10 && personalMoviesDB.count < 30) {
+  console.log('Нормально так');
+} else if (personalMoviesDB.count >= 30) {
+  console.log('Вообще красава!');
+} else {
+  console.log('Ну значит в другой раз');
+}
 
 console.log(personalMoviesDB);
 
